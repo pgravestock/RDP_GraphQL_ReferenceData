@@ -1,0 +1,650 @@
+query SPInstrumentRefData($ObjectList: [String!]) {
+  SPInstrument(objectIds: $ObjectList) {
+    ObjectId
+    Reference {
+      AnnualInterestFractionRate
+      AnnualPremiumFractionRate
+      AssetClassId
+      BasicType
+      BondYieldRate
+      CallPutOption
+      CfiAnna
+      CfiLse
+      CfiRefinitiv
+      CfiSP
+      ChIupType
+      Cin
+      CommonCode
+      ComplexInstrument
+      ClearingHouses {
+        ClearingHouseId
+      }
+      ContractComplexity871MType
+      CoverageTypeIndicator
+      Cusip
+      DayCountMethodType
+      DefinitiveTerms
+      DelistingReason
+      DisproportionalParticipation
+      DistributionExecutionOnly
+      DistributionInvestmentConsulting
+      DistributionPortfolioManagement
+      DistributionTransactionWithoutConsulting
+      EUTaxType
+      EthicalInvestment
+      EusipaClassification
+      ExerciseBeginDate {
+        ExerciseBeginDate
+      }
+      ExerciseDates {
+        ExerciseDate
+      }
+      ExerciseEarliestTime {
+        ExerciseEarliestTime
+      }
+      ExerciseLatestTime {
+        ExerciseLatestTime
+      }
+      ExerciseStyle
+      ExpiryDate {
+        ExpiryDate
+      }
+      FinalBondFloorRate
+      FinfragReportabilityType
+      FinfragSecurityType
+      Form
+      FttApplied
+      GreenInvestment
+      Guarantors {
+        GuarantorId
+      }
+      IbtTypeCode
+      InitialBondFloorRate
+      InitialFixingDates {
+        InitialFixingDate
+      }
+      InitialFixingEndDate {
+        InitialFixingEndDate
+      }
+      InstrumentId
+      InstrumentStatus
+      Isin
+      IslamicBanking
+      IsmaNumber
+      IssueDate {
+        IssueDate
+      }
+      IssueCurrencyId
+      IssuePrice
+      IssueQuantity
+      IssuerId
+      IssuersInstrumentScopeClassification871M
+      JurisdictionLocationId
+      KnowledgeExperienceType
+      LeveragedInstrument
+      LongTermInvestment
+      LossBearingCapacityType
+      MarketingProductName {
+        LanguageId
+        MarketingProductName
+      }
+      MediumTermInvestment
+      MinimumIncrement
+      MinimumNeededAmount
+      NegativeKnowledgeExperienceType
+      NegativeLossBearingCapacityType
+      NegativeRiskIndicatorType
+      NegativeRiskYieldProfileType
+      OpenEndedIndicator
+      OtcFlag
+      PaymentDate {
+        PaymentDate
+      }
+      PrivateCustomerFlag
+      PrivatePlacementIndicator
+      ProfessionalCustomerFlag
+      QualifiedCounterpartyFlag
+      RedemptionDate {
+        RedemptionDate
+      }
+      RiskIndicatorType
+      RiskYieldProfileType
+      SecurityRankingType
+      SettlementCurrencyId
+      SettlementType
+      ShortTermInvestment
+      SpecificRetirementScheme
+      SubscriptionPeriod {
+        SubscriptionEndDate
+        SubscriptionStartDate
+      }
+      TaxPaidByIssuer871M
+      TimeZone
+      TransactionRestrictions {
+        CurrencyId
+        RestrictionBeginDate
+        RestrictionDays
+        RestrictionDefinitionAuthority
+        RestrictionDescription
+        RestrictionEndDate
+        RestrictionLocationId
+        RestrictionMaximumAmount
+        RestrictionMinimumAmount
+        RestrictionSubjectType
+        TransactionLocationId
+        TransactionType
+      }
+      USTaxReportabilityType
+      USTaxType
+      Underwriters {
+        Underwriter
+      }
+      ValorenNumber
+      WarrantNotes {
+        WarrantNote
+      }
+      Wert
+    }
+    Barriers {
+      Barrier {
+        AffectedStrikes {
+          AffectedStrikes
+        }
+        BarrierFixingDates {
+          BarrierFixingDate
+        }
+        BarrierLevel
+        BarrierLowerLevel
+        BarrierType
+        BarrierUnit
+        BarrierUpperLevel
+        ComparatorType
+        CurrencyId
+        MonitorPriceType
+        ObservationBeginDate {
+          ObservationBeginDate
+        }
+        ObservationEndDate {
+          ObservationEndDate
+        }
+        Reference {
+          CashFlowId
+          UnderlyingId
+        }
+        QuantifierType
+        UnderlyingSelectionType
+        UnderlyingValuationType
+      }
+    }
+    CashFlows {
+      CashFlow {
+        AnnualIncomeRate
+        CashFlowType
+        FirstPaymentDate {
+          FirstPaymentDate
+        }
+        IbtMaturityRetractionProlongations {
+          CurrencyId
+          NoticePeriod
+          NoticePeriodType
+          PaymentAmount
+          PaymentRate
+          ProlongedRedemptionDate
+          RedemptionBeginDate
+          RedemptionDescription
+          RedemptionEndDate
+          RedemptionInterval
+          RedemptionIntervalType
+          RedemptionPeriodicType
+          RedemptionReasonType
+          RedemptionValueDate
+          RedemptionValueDays
+          RedemptionValueDaysType
+        }
+        IncomeIntervalCount
+        IncomeIntervalType
+        IncomeType
+        IncomeValuationBusinessDays
+        InterestComponentFlag
+        InterestFromDate {
+          InterestFromDate
+        }
+        Reference {
+          CashflowsId
+        }
+        SettlementType
+        UnderlyingDependencyRole
+        ValueDate {
+          ValueDate
+        }
+      }
+    }
+    InstrumentIssuerOrganizationId
+    PartyRelationships {
+      PartyRelationship {
+        GuaranteeType
+        Reference {
+          PartyId
+          PartyRoleId
+        }
+      }
+    }
+    Strikes {
+      Strike {
+        ComparatorType
+        CurrencyId
+        FixingDates {
+          StrikeFixingDate
+        }
+        FixingEndDate {
+          StrikeFixingEndDate
+        }
+        IbtStrikeDefinitionKey
+        ParticipationLevel
+        Reference {
+          CashFlowId
+          UnderlyingId
+        }
+        StrikePrice
+        StrikePriceUnit
+        StrikeType
+        UnderlyingSelectionType
+      }
+    }
+    Tranches {
+      Tranche {
+        IssueAmount
+        IssuePrice
+        ListingDate {
+          ListingDate
+        }
+        TrancheSequence
+      }
+    }
+    Underlyings {
+      Underlying {
+        AlternativeCode
+        BonusLevel {
+          BonusLevel
+          CurrencyId
+          Unit
+          ValidityEnd
+          ValidityStart
+        }
+        Cap {
+          CurrencyId
+          Unit
+          ValidityEnd
+          ValidityStart
+          Value
+        }
+        CashFlowLegFlag
+        CommonName {
+          CommonName
+          LanguageId
+        }
+        Coupon {
+          CurrencyId
+          Unit
+          ValidityEnd
+          ValidityStart
+          Value
+        }
+        CouponLevel {
+          CouponLevel
+          CurrencyId
+          Unit
+          ValidityEnd
+          ValidityStart
+        }
+        CurrencyPairSpotRate
+        CurrencyPairSymbolName
+        CurrentAmount
+        DeltaAtIssue
+        DesignationAmount
+        ExchangeUnderlyingType
+        IbtUnderlyingKey
+        IbtUnderlyingMgmtType
+        IncomeCashFlowFlag
+        InitialPrice
+        LowerBarrier {
+          CurrencyId
+          LowerBarrier
+          Unit
+          ValidityEnd
+          ValidityStart
+        }
+        LowerKnockInLevel {
+          CurrencyId
+          LowerKnockInLevel
+          Unit
+          ValidityEnd
+          ValidityStart
+        }
+        LowerKnockOutLevel {
+          CurrencyId
+          LowerKnockOutLevel
+          Unit
+          ValidityEnd
+          ValidityStart
+        }
+        MainUnderlyingType
+        NumberOfSharesInTheInitialHedge
+        ParticipationLevelValuationParameter {
+          CurrencyId
+          Unit
+          ValidityEnd
+          ValidityStart
+          Value
+        }
+        PriceType
+        PrincipalCashFlowFlag
+        ProtectionLevel {
+          CurrencyId
+          Unit
+          ValidityEnd
+          ValidityStart
+          Value
+        }
+        Reference {
+          CompositeId
+          CompositeType
+          InstrumentId
+          UnderlyingId
+        }
+        Ratio
+        RoleType
+        RolloverFlag
+        SettlementType
+        UnderlyingDescription {
+          Description
+          LanguageId
+        }
+        UnderlyingStrikePrice {
+          CurrencyId
+          Unit
+          ValidityEnd
+          ValidityStart
+          Value
+        }
+        UnderlyingType
+        UpperBarrier {
+          CurrencyId
+          Unit
+          UpperBarrier
+          ValidityEnd
+          ValidityStart
+        }
+        UpperKnockInLevel {
+          CurrencyId
+          Unit
+          UpperKnockInLevel
+          ValidityEnd
+          ValidityStart
+        }
+        UpperKnockOutLevel {
+          CurrencyId
+          Unit
+          UpperKnockOutLevel
+          ValidityEnd
+          ValidityStart
+        }
+        Weighting
+      }
+    }
+    AllQuotes {
+      ObjectId
+      Reference {
+        AllocationDeliveryDay
+        AssetRoot
+        BarrelsPerTon
+        BaseProduct
+        BaseProductEsma
+        BasisGapAdjusted
+        BasisGapAdjustmentTrigger
+        BtuPerBarrel
+        CallPutOption
+        CashInLieu
+        CaveatEmptorFlag
+        ChinaConnectEligibleType
+        CommoditiesDerivativeIndicator
+        CommoditiesDerivativeIndicatorEsma
+        CompositeQuoteFlag
+        ContractDate
+        ContractType
+        ContractTypeEsma
+        CountryPrimaryQuoteFlag
+        DailyTradingLimit
+        DateOfAdmissionToTradingEsma
+        DateOfRequestforAdmissionToTradingEsma
+        DateofApprovalofAdmissiontoTradingEsma
+        DeliveryCashSettlementLocationEsma
+        DeliveryTypeEsma
+        DerivativePeriodicity
+        EmissionsAllowancesSubType
+        EmissionsAllowancesSubTypeEsma
+        ErosionStartDay
+        EsmaClearingObligationFlag
+        EsmaFinalPriceType
+        EsmaNotionalCurrency1Id
+        EsmaTransactionType
+        EtfPriceType
+        ExchangeCode
+        ExchangeMarketSize
+        ExerciseBeginDate
+        ExerciseEndDate
+        ExpiryDateEsma
+        ExplicitCoraxVersionNumber
+        FinalInventoryDay
+        FinancialInstrumentShortNamesEsma {
+          FinInstrShortNameEsma
+          LanguageId
+        }
+        FirstBlockTASDay
+        FirstDeliveryDay
+        FirstIntentionDay
+        FirstTradingDate
+        FreightSubTypeSizeEsma
+        FurtherSubProduct
+        FurtherSubProductEsma
+        HkasKCASEligible
+        HkvcmEligible
+        InitialInventoryDueDay
+        InitialMargin {
+          InitialMargin
+        }
+        IrishStampDutyPayable
+        IssuePrice
+        LastBlockTASDay
+        LastDeliveryDay
+        LastEfpDay
+        LastIntentionDay
+        LastTradingDate
+        ListMarket
+        LotSize
+        LseOpol
+        MaintenanceMargin {
+          MaintenanceMargin
+        }
+        MethodOfDelivery
+        Mic
+        MifidContractType
+        MifidFinalPriceType
+        MifidTransactionType
+        NoticeDayFirst
+        NoticeDayLast
+        OptionExerciseStyle
+        OptionStub
+        OptionStyle
+        OptionTypeEsma
+        OriginalExpiryDate
+        PanelOfTakeoversAndMergersLevyEligible
+        PaymentDate
+        PercentofTUWin12MTR
+        PositionRemovalDay
+        PriceMultiplierEsma
+        PricingGroupCode
+        PricingGroupName
+        PricingUnit
+        PrimaryQuoteFlag
+        PrimaryTradableMarketQuote
+        QuoteAdminStatus {
+          QuoteAdminStatus
+          QuoteAdminStatusAdminStatusReason
+          QuoteAdminStatusEffectiveFrom
+        }
+        QuoteAssetCategory
+        QuoteAssetClassId
+        QuoteAssetType
+        QuoteCommonNames {
+          LanguageId
+          QuoteCommonName
+        }
+        QuoteCountryId
+        QuoteCountryIdobjectTypeId
+        QuoteCurrencyId
+        QuoteExchangeCode
+        QuoteExerciseStyle
+        QuoteExpiryDate
+        QuoteId
+        QuoteIdObjectTypeId
+        QuoteInstrumentId
+        QuoteIsActive
+        QuoteIsEventAdjusted
+        QuoteLotSize
+        QuoteLotUnit
+        QuoteRcsAssetClass
+        QuoteType
+        RateType
+        RealTimeExchangeCode
+        RegulationShoStatusFlag
+        RelatedNewsCodes {
+          RelatedNewsCode
+        }
+        RequestforAdmissionToTradingByIssuerEsma
+        RetireDate
+        RoundLotSize
+        RouteTimeCharterAverageEsma
+        Rule144ARegistered
+        Rule4320StatusFlag
+        SearchDisplayNames {
+          LanguageId
+        }
+        SeriesDescriptions {
+          LanguageId
+          SeriesDescription
+        }
+        SearchRanking
+        SettlementCurrencyId
+        SettlementDay
+        SettlementPeriod
+        ShareClass
+        ShortSellRestrictionType
+        ShortNames {
+          QuoteShortName
+          QuoteShortNameLanguageId
+        }
+        StalenessIndicator
+        StampDuty
+        StrikePrice
+        StrikePriceEsma
+        StrikePriceMultiplier
+        StructuredProductQuoteData{
+          ObjectId
+          Reference {
+            AdminStatus {
+              AdminStatus
+              AdminStatusReason
+              RelationObjectId
+            }
+            ContextId
+            CountryPrimaryQuoteId
+            DelistDate {
+              DelistDate
+            }
+            DirtyPriceFlag
+            FirstTradingDate {
+              FirstTradingDate
+            }
+            FullyFundedFlag
+            LastTradingDate {
+              LastTradingDate
+            }
+            MarketMakers{
+              MarketMakerId
+            }
+            PaymentAfterKnockOutPeriod
+            PriceConvention
+            QuotationCommonName {
+              LanguageId
+              QuotationCommonName
+            }
+            QuotationCurrencyId
+            QuoteId
+            Registered144AFlag
+            Ric
+            RoundLotSize
+            SecondaryListingPlaces{
+              SecondaryListingPlaceId
+            }
+            Sedol
+            SettlementPeriod
+            ShortName {
+              LanguageId
+              ShortName
+            }
+            StampDutyFlag
+            TickerSymbol
+            TimeZone
+            TradingGroup
+            TradingStatus
+            TradingSymbol
+            TradingType
+          }
+          
+        }
+        SubProduct
+        SubProductEsma
+        SuspendedFlag
+        TenorType
+        TenorValue
+        TerminationDateEsma
+        TickSize
+        TickSizePilotGroup
+        TickValue
+        TickValueCurrencyId
+        TisUpdateFrequency
+        TradingGroup
+        TradingMarket
+        TradingObligationEsma
+        TradingParameterCode
+        TradingStatus
+        UKStampDutyPayable
+        UnderlyingCommodityId
+        UnderlyingCommodityIdObjectTypeId
+        UnderlyingIndexNames {
+          LanguageId
+          UnderlyingIndexName
+        }
+        UnderlyingIndexNamesEsma {
+          LanguageId
+        }
+        UnderlyingIndexNameEsmaQuote
+        UnderlyingTypeEsma
+        UnscaledStrikePrice
+        UnsolicitedOnlyFlag
+        WarrantIssueDate
+        WhenDistributedQuoteFlag
+        WhenIssued
+      }
+      QuoteIdentifiers {
+        IdentifierTypeId
+        IdentifierData {
+          IdentifierEffectiveFrom
+          IdentifierValue
+          PrimaryIdentifierFlag
+        }
+      }
+    }
+  }
+}

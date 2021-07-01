@@ -1,0 +1,375 @@
+query InstrumentRefData($ObjectList: [String!]) {
+  FundShareClass(objectIds: $ObjectList) {
+    ObjectId
+    AdminStatus {
+      AdminStatusId
+      AdminStatusReasonId
+      EffectiveFromDate
+      EffectiveToDate
+      UnconfirmedFlag
+    }
+    Name {
+      Names {
+        EffectiveFromDate
+        EffectiveToDate
+        FundShareClassId
+        LanguageId
+        LegalName
+        Name
+        NickName
+        ShortName
+      }
+    }
+    Identifier {
+      Identifiers {
+        EffectiveFromDate
+        EffectiveToDate
+        IdentifierTypeCodeId
+        Value
+      }
+    }
+    Attribute {
+      AbiLifeSchemeClassificationId
+      AbiPensionClassificationId
+      AbiUKOldLifeClassificationId
+      AbilityForLossBeyondCapitalFlagIdId
+      AdvancedInvestorFlagId
+      AicInvestmentTrustClassificationId
+      AmfClassificationId
+      ApifFlagId
+      AssetUniverseClassificationId
+      Assogestioni2003ClassificationId
+      AssogestioniFondiPensioneClassificationId
+      AustrianEUTaxDirectiveFlagId
+      AustrianRegistrationStatusId
+      BasicInvestorFlagId
+      BrazilAnbimaClassificationId
+      CCorpsFlagId
+      CamaraArgentinaClassificationId
+      ChileSvsClassificationId
+      CifscClassificationId
+      CleanSharesFlagId
+      ClosedToNewInvestorsFlagId
+      ContentUsageRestrictionId
+      ConvenienceShareClassFlagId
+      DefaultTaxStatusId
+      DistributionChannelPrimaryFlagId
+      DistributionPolicyId
+      DistributionTaxStatusId
+      DividendTiiaFlagId
+      EUTaxDirectiveGreaterThan25PercentThresholdFlagId
+      EUTaxDirectiveLessThan15PercentThresholdFlagId
+      EUTaxDirectiveStatusId
+      EarlyTerminationAllowedFlagId
+      ExchangeListedFlagId
+      ExecutionOnlyFlagId
+      ExecutionWithAppropriatenessTestOrNonAdviceServicesFlagId
+      ExemptFlagId
+      ExpertInvestorGermanyFlagId
+      FeriPeergroupClassificationId
+      FrenchPeaId
+      FrenchPeaOldId
+      FundIndexReplicationMethodId
+      FundOfFundsExternalFlagId
+      FundOfFundsInternalFlagId
+      FundShareClassId
+      FundSizeHeldByPrimaryFlagId
+      GermanBVIClassificationId
+      HedgedDurationFlagId
+      HedgedFlagId
+      HedgedNavFlagId
+      HedgedPortfolioFlagId
+      HoldingsBasedClassificationId
+      HongKongPensionFundsClassificationId
+      HongKongPrimaryFundFlagId
+      ImaClassificationId
+      IndexReplicationMethodId
+      IndexTrackingFlagId
+      IndiaAmfiCategoryWiseClassificationId
+      InformedInvestorFlagId
+      InstitutionalFundFlagId
+      InvestmentAdviceFlagId
+      InvestorTypeEligibleCounterpartyFlagId
+      InvestorTypeId
+      InvestorTypeProfessionalFlagId
+      InvestorTypeRetailId
+      IslamicFlagId
+      IsraelTaseClassificationId
+      IsraeliTaxStatusId
+      ItalianTaxFlagId
+      JapaneseItaBoardClassificationId
+      JapaneseItaGeneralClassificationId
+      KoreaKofiaDetailClassificationId
+      LimitedCapitalLossAbilityFlagId
+      LipperGlobalClassificationId
+      LipperMalaysiaClassificationId
+      LipperSchweizClassificationId
+      LipperSwissPensionClassificationId
+      LipperTaiwanClassificationId
+      LowestRiskToleranceSuitabilityGermanyId
+      MexicanCnbvClassificationId
+      MexicanMoneyMarketClassificationId
+      MifidIIFlagId
+      MifidIILegalStructureId
+      MifidIILeveragedOrContingentLiabilityId
+      NavTiiaFlagId
+      NoCapitalGuaranteeFlagId
+      NoCapitalLossAbilityFlagId
+      OptionOrLeveragedReturnProfileFlagId
+      PeruConasevClassificationId
+      PhilippinesToapClassificationId
+      PortfolioManagementFlagId
+      PortugueseApfippNewClassificationId
+      PortugueseCmvmNewClassificationId
+      PrivateFundFlagId
+      QualifyingTrustFlagId
+      RdrClassId
+      RegulatedInvestmentCompanyFlagId
+      ReturnProfileGrowthFlagId
+      ReturnProfileHedgingFlagId
+      ReturnProfileIncomeFlagId
+      ReturnProfileOtherId
+      ReturnProfilePensionSchemeGermanyFlagId
+      ReturnProfilePreservationId
+      RiskToleranceInternalId
+      RiskToleranceNonPriipsUcitsSpainId
+      RiskTolerancePriipsSriId
+      RiskToleranceUcitsSrriId
+      RrspElgibilityFlagId
+      SingaporePrimaryFundFlagId
+      SitcaDomesticClassificationId
+      SouthAfricaAsisaClassificationId
+      SpanishCnmvNewClassificationId
+      SpanishInvercoNewClassificationId
+      SpanishPensionInvercoClassificationId
+      SpecificInvestmentNeedFlagId
+      TadawulFundCategoryId
+      TawianPrimaryFundFlagId
+      TaxManagedFlagId
+      ThaiLongTermEquityFundFlagId
+      ThailandAimcBroadClassificationId
+      ThailandAimcDetailedClassificationId
+      ThailandSecClassificationId
+      TurkeyCmbClassificationId
+      USMutualFundClassificationId
+      USMutualFundObjectiveClassificationId
+      UcitsFlagId
+      ValuationDelayFlagId
+      ValuationPricingFrequencyId
+      YieldTaxStatusId
+    }
+    Date {
+      BeginningOfCalculationPeriodDate
+      ClosedDate
+      EUTaxDirectiveFiscalEndDate
+      EUTaxDirectiveFiscalStartDate
+      EndOfCalculationPeriodDate
+      FirstFamilyNavDate
+      FirstMarketPriceDate
+      FirstNavDate
+      FundShareClassId
+      HistoryDate
+      IpoDate
+      LaunchDate
+      ManagementChangeDate
+      MaturityDate
+      MifidIIMaturityDate
+      MifidIIReportingDate
+      QualifiedHistoryDate
+    }
+    BestWorst {
+      BestWorstPerformances {
+        BestEstimatedFlag
+        BestStartDate
+        BestValue
+        BestWorstSeriesId
+        CurrencyId
+        FundShareClassId
+        SeriesStartDate
+        WorstEstimatedFlag
+        WorstStartDate
+        WorstValue
+      }
+    }
+    Status {
+      EffectiveFromDate
+      EffectiveToDate
+      StatusId
+    }
+    Rating {
+      Ratings {
+        ConsistentReturn10YearCount
+        ConsistentReturn10YearScore
+        ConsistentReturn3YearCount
+        ConsistentReturn3YearScore
+        ConsistentReturn5YearCount
+        ConsistentReturn5YearScore
+        ConsistentReturnCount
+        ConsistentReturnScore
+        Expense10YearCount
+        Expense10YearScore
+        Expense3YearCount
+        Expense3YearScore
+        Expense5YearCount
+        Expense5YearScore
+        ExpenseCount
+        ExpenseScore
+        Preservation10YearCount
+        Preservation10YearScore
+        Preservation3YearCount
+        Preservation3YearScore
+        Preservation5YearCount
+        Preservation5YearScore
+        PreservationCount
+        PreservationScore
+        RatingDate
+        RatingUniverseId
+        TaxEfficiency10YearCount
+        TaxEfficiency10YearScore
+        TaxEfficiency3YearCount
+        TaxEfficiency3YearScore
+        TaxEfficiency5YearCount
+        TaxEfficiency5YearScore
+        TaxEfficiencyCount
+        TaxEfficiencyScore
+        TotalReturn10YearCount
+        TotalReturn10YearScore
+        TotalReturn3YearCount
+        TotalReturn3YearScore
+        TotalReturn5YearCount
+        TotalReturn5YearScore
+        TotalReturnCount
+        TotalReturnScore
+      }
+    }
+    Text {
+      TextCollection {
+        FundShareClassId
+        LanguageId
+        Text
+        TextDate
+        TextTypeId
+      }
+    }
+    Charge {
+      Charges {
+        ChargeTypeId
+        CurrentChargePercent
+        EffectiveFromDate
+        EffectiveToDate
+        FundShareClassId
+        LoadBreakpointNumber
+        MaximumChargePercent
+        MinimumChargePercent
+        ReviewDate
+      }
+    }
+    TotalNetAssets {
+      TotalNetAssetsCollection {
+        CurrencyId
+        ScaleId
+        TotalNetAssetsDate
+        Value
+        ValueTypeId
+      }
+    }
+    PrimaryClassOf {
+      Name {
+        Names {
+          EffectiveFromDate
+          EffectiveToDate
+          LanguageId
+          LegalName
+          Name
+          NickName
+          ShortName
+        }
+      }
+    }
+    IssuerFund {
+      ObjectId
+      Name {
+        Names {
+          EffectiveFromDate
+          EffectiveToDate
+          LanguageId
+          LegalName
+          Name
+          NickName
+          ShortName
+        }
+      }
+      Allocation {
+        Allocations {
+          AllocationDate
+          AllocationItemName
+          AllocationItemPercent
+          AllocationRank
+          AllocationSchemeId
+          LanguageId
+        }
+      }
+      Attribute {
+        ActivelyManagedEtfFlagId
+        AssetTypeId
+        CharitiesFlagId
+        FundAttributeAifmdFlagId
+        GeographicalFocusId
+        HoldingsBasedClassificationCapitalizationId
+        HoldingsBasedClassificationStyleId
+        IndexReplicationMethodId
+        IntervalHybridFlagId
+        InvestmentStrategyLeveragedFlagId
+        InvestmentThemeId
+        LegalStructureId
+        ManagerOfManagerFundsFlagId
+        NonDiversifiedFlagId
+        PrincipalProtectedFlagId
+        SmartBetaFlagId
+        SwxBillingProductSegmentId
+        UcitsMoneyMarketCategoryId
+      }
+      Date {
+        FiscalDate
+      }
+      Identifier {
+        Identifiers {
+          EffectiveFromDate
+          EffectiveToDate
+          IdentifierTypeCodeId
+          IdentifierValue
+        }
+      }
+      PromoterName {
+        PromoterNames {
+          FundGroupId
+          FundGroupName
+          GroupTypeId
+        }
+      }
+      Status {
+        AdminStatusId
+        AdminStatusReasonId
+        EffectiveFromDate
+        EffectiveToDate
+        UnconfirmedFlag
+      }
+      TotalNetAssets {
+        TotalNetAssetsCollection {
+          CurrencyId
+          ScaleId
+          TotalNetAssetsDate
+          Value
+          ValueTypeId
+        }
+      }
+      UmbrellaName {
+        UmbrellaNames {
+          FundGroupId
+          FundGroupName
+          GroupTypeId
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+query EndofDayPricing($ObjectList: [String!],$PriceDate: String!) {
+  QuotePricing(objectIds: $ObjectList) {
+    ObjectId
+    Reference{
+      Ric
+      Tag
+      PoDetails{
+        TagMetaData{
+          PoName
+          PoNameSpace
+        }
+      }
+    }
+    EndOfDay{
+      TimeSeries(filter:{Date:{EQ:$PriceDate}}) {
+        Date
+        EvaluatedBidPrice
+        EvaluatedAskPrice
+        EvaluatedMidPrice
+        EvaluatedAccruedInterest
+        AccruedInterest
+        BidPrice
+        AskPrice
+        ClosePrice
+        HighPrice
+        LowPrice,
+        OpenPrice,
+        AccumulatedVolume,
+        NumberofTrades
+      }
+    }
+  }
+}

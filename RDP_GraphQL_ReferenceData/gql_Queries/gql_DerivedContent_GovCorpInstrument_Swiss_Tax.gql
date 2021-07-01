@@ -1,0 +1,13 @@
+query InstrumentRefData($ObjectList: [String!]) {
+  DerivedContentGovCorpBonds(objectIds: $ObjectList) {
+    ObjectId
+    SwissStampDutyTax {
+      AssetTypeDescription
+      InstrumentId
+      IssuerDomicileText
+      SwissStampDutyFlag
+      TaxationComment
+      TaxationType
+    }
+  }
+}

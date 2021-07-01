@@ -1,0 +1,14 @@
+query InstrumentRefData($ObjectList: [String!]) {
+  EDFInstrument(objectIds: $ObjectList) {
+    ObjectId
+    Reference {
+      InstrumentCommonNames {
+        InstrumentNameCommon
+        LanguageId
+      }
+      AssetClassId
+      Cfi
+      InstrumentStatus
+    }
+  }
+}

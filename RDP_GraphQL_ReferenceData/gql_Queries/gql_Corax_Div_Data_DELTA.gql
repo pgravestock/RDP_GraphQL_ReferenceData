@@ -1,0 +1,145 @@
+query DivData($ObjectList: [String!], $DeltaDate:DateTime!) {
+  DividendEvents(filter: {AND: [{UnderlyingInstrumentId: {IN: $ObjectList}}, {EventAdjustment: {EventTypeCode: {IN: ["DRIP", "DVCA", "DVOP", "DVSE", "LIQU", "SHPR", "CAPD", "CAPG"]}}}]}, sort: {Dividends: {Details: {AnnouncementDate: DESC}}}, ,delta:{from:$DeltaDate}, limit: 200) {
+    _metadata {
+      totalCount
+    }
+    ObjectId
+    UnderlyingEquityInstrument {
+      IssuerOrganizationId
+    }
+    UnderlyingInstrumentId
+    Enrichment {
+      AdjustmentFactor {
+        AdjustmentTypeCode
+        AdjustmentFactor
+      }
+    }
+    EventAdjustment {
+      EventTypeCode
+      Meetings {
+        MeetingDate
+        MeetingTypeCode
+      }
+    }
+    Dividends {
+      General {
+        EventId
+        MandatoryVoluntaryIndicator
+        EventActionCode
+        ProcessingTypeCode
+        ProcessingStatus
+      }
+      Details {
+        EventStageCode
+        AnnouncementDate
+        OfficialAnnouncementDate
+        RescindedDate
+        PeriodLength
+        PeriodLengthIndicator
+        PeriodEndDate
+        PaymentFrequency
+        DeclaredDividendAmount
+        DeclaredDividendAmountCurrencyId
+        AdjustedDeclaredDividendAmount
+        AdjustedDeclaredDividendAmountCurrencyId
+        BookClosureStartDate
+        BookClosureEndDate
+        DistributionTypeCode
+        DividendCurrencyId
+        DividendSuspendedFlag
+        DistributionMarkerTypeCode
+        QdiPercent
+        QdiEligibilityCode
+        ForeignTaxRate
+        FrankedPercent
+        SourceOfFundsCode
+        InstrumentLevelNetDividendAmount
+        InstrumentLevelGrossDividendAmount
+        InstrumentLevelAdjustedNetDividendAmount
+        InstrumentLevelAdjustedGrossDividendAmount
+        TaxRate
+        TaxStatus
+        InstallmentCode
+        LastUpdateDate
+      }
+      AnnualizedDividend {
+        EventId
+        AnnualizedDividendDerivationTypeCode
+        TypeCode
+        TypeCodeDefaultFlag
+        PeriodEndDate
+        PeriodStartDate
+        UnadjustedGrossDividendAmount
+        UnadjustedGrossDividendAmountCurrencyId
+        UnadjustedNetDividendAmount
+        UnadjustedNetDividendAmountCurrencyId
+        AdjustedGrossDividendAmount
+        AdjustedGrossDividendAmountCurrencyId
+        AdjustedNetDividendAmount
+        AdjustedNetDividendAmountCurrencyId
+        LastUpdateDate
+      }
+      MarketDetails {
+        RecordDate
+        ExDate
+        WithholdingTaxRate
+        UnderlyingQuoteId
+      }
+      Options {
+        CurrencyOptionId
+        OptionNumber
+        OptionTypeCode
+        DefaultOptionFlag
+        MarketDeadlineDate
+        DispositionOfFractionsCode
+        CashMovement {
+          SequenceNumber
+          GrossDividendAmount
+          GrossDividendAmountCurrencyId
+          NetDividendAmount
+          NetDividendAmountCurrencyId
+          AdjustedNetDividendAmount
+          AdjustedNetDividendAmountCurrencyId
+          AdjustedGrossDividendAmount
+          AdjustedGrossDividendAmountCurrencyId
+          AmountStatusCode
+          CreditDebitIndicator
+          DistributionTaxTypeCode
+          ExchangeRateDetails {
+            ExchangeRate
+            ExchangeRateCurrencyId
+          }
+          FeeAmount
+          FeeAmountCurrencyId
+          PayDateFlag
+          PaymentDate
+          TaxCreditAmount
+          TaxCreditCurrencyId
+          TaxCreditPercent
+        }
+        SecurityMovement {
+          SequenceNumber
+          CreditDebitIndicator
+          StockDifferentFlag
+          ResultingSecurityId
+          PayDateFlag
+          PaymentDate
+          ExistingSecuritiesQuantity
+          AdditionalSecuritiesQuantity
+          PriceCalculationStartDate
+          PriceCalculationEndDate
+          ReinvestmentPrice
+          ReinvestmentPriceCurrencyId
+          ReinvestmentPriceDate
+          FeeAmount
+          FeeAmountCurrencyId
+        }
+      }
+      AdditionalInformation {
+        LanguageId
+        AdditionalInformationTypeCode
+        AdditionalInformation1
+      }
+    }
+  }
+}
