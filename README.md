@@ -12,6 +12,7 @@ The purpose of this module is to:
 * An RDP account that is entitled to
   * run graphQL queries
   * Access PRS Reference Data
+  * Access End of Day Pricing data
     * User credentials to be applied to the `rdp_Prod_Authentication_Token.py` file
 * It is also assumed that the user has a working and stable Python Development Environment. The code uses the `requests` HTTP library in Python. If you have not added this library to your Python environment, you must add the requests module using the appropriate command from the command promp of your operating system. See <https://www.geeksforgeeks.org/how-to-install-requests-in-python-for-windows-linux-mac/> for details of how to install this module.
 
