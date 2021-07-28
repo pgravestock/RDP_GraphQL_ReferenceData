@@ -27,6 +27,8 @@ The purpose of this module is to:
   * the time taken to complete the graphQL request for each batch and the http status of the response
   * details of log files written to the `./Logs` directory
   * confirmation that processing is complete.
+* The file `rdp_Prod_Workflow_EndOfDayPricing.py` can be used to demonstrate requests for End of Day Pricing rather than reference data. Unlike the ReferenceData workflow examnple above, the script does not expect a list of identifiers that need converting into PermIDs, but simply contains a list of Quote PermIDs.
+  * The script requires the user to provide a PriceDate. The predefined graphQL query used to request End of Day Pricing only supports a single price date.
 
 ## Capabilities
 
