@@ -41,6 +41,9 @@
 # identifier type using the name type recognised by Symbology (e.g. Isin, Sedol, Cusip, ValorenNumber,Wpk, RIC). Any other identifier types will not be
 # recognised. The symbology API request is designed to always return the Instrument PermID for the identifier provided.
 
+# Version 1.01 An additional check is included when processing the Symbology output to stop an error from occuring
+# when Symbology does not recognise an instrument identifer - prior to this change the code was looking for an  
+# objectType that did not exist if the instrument was not recognsed, causing the code to fail.
 
 import rdp_Common_Lib
 import rdp_Prod_Serialise_List_To_Instrument_PermID
@@ -69,7 +72,7 @@ RIC=[]
 Wpk=[]
 
 # The Instrument List being processed
-Portfolio="./Input/Equity_List_10.csv"
+Portfolio="./Input/Muni_Instrument_List_1000.csv"
 DeltaFlag="Initialise"
 DeltaDate=None
 
@@ -145,57 +148,60 @@ while Li<len(BatchedPortfolio):
                         identifierType=userInputs['identifierType']
                         identifierValue=userInputs['value']
                         responses=instrument['output']
+
+                        #Check if Symbology recognised the identifier
+                        if len(responses)>0:
                     
-                        # Check if Symbology returned multiple objectTypes
-                        if len(responses)>1:
+                           # Check if Symbology returned multiple objectTypes
+                            if len(responses)>1:
                         
-                            # If multiple object types were returned, sort the list into the custom order defined in objectTypeOrder
-                            # and take the first record only.
-                            extracted_response=sorted(responses, key=lambda d: order[d['objectType']])[0]
+                                # If multiple object types were returned, sort the list into the custom order defined in objectTypeOrder
+                                # and take the first record only.
+                                extracted_response=sorted(responses, key=lambda d: order[d['objectType']])[0]
 
-                            objectType=extracted_response['objectType']
-                            permID=extracted_response['value']
-                            results.extend((identifierType, identifierValue, objectType, permID))
+                                objectType=extracted_response['objectType']
+                                permID=extracted_response['value']
+                                results.extend((identifierType, identifierValue, objectType, permID))
 
-                        elif len(responses)==1:
-                            extracted_response=responses[0]
-                            objectType=extracted_response['objectType']
-                            permID=extracted_response['value']
-                            results.extend((identifierType, identifierValue, objectType, permID))
+                            elif len(responses)==1:
+                                extracted_response=responses[0]
+                                objectType=extracted_response['objectType']
+                                permID=extracted_response['value']
+                                results.extend((identifierType, identifierValue, objectType, permID))
 
-                        if objectType in ValidObjectTypes:
-                            if objectType=="GovCorpQuote":
-                                GovCorpQuote.append(permID)
+                            if objectType in ValidObjectTypes:
+                                if objectType=="GovCorpQuote":
+                                    GovCorpQuote.append(permID)
                             
-                            elif objectType=="GovCorpInstrument":
-                                GovCorpInstrument.append(permID)
+                                elif objectType=="GovCorpInstrument":
+                                    GovCorpInstrument.append(permID)
 
-                            elif objectType=="FundShareClass":
-                                FundShareClass.append(permID)
+                                elif objectType=="FundShareClass":
+                                    FundShareClass.append(permID)
                             
-                            elif objectType=="EDInstrument":
-                                EDInstrument.append(permID)
+                                elif objectType=="EDInstrument":
+                                    EDInstrument.append(permID)
 
-                            elif objectType=="AbsCmoInstrument":
-                                AbsCmoInstrument.append(permID)
+                                elif objectType=="AbsCmoInstrument":
+                                    AbsCmoInstrument.append(permID)
 
-                            elif objectType=="EdfQuote":
-                                EdfQuote.append(permID)
+                                elif objectType=="EdfQuote":
+                                    EdfQuote.append(permID)
 
-                            elif objectType=="MuniInstrument":
-                                MuniInstrument.append(permID)
+                                elif objectType=="MuniInstrument":
+                                    MuniInstrument.append(permID)
 
-                            elif objectType=="SPInstrument":
-                                SPInstrument.append(permID)
+                                elif objectType=="SPInstrument":
+                                    SPInstrument.append(permID)
 
-                            elif objectType=="MbsPoolInstrument":
-                                MbsPoolInstrument.append(permID)
+                                elif objectType=="MbsPoolInstrument":
+                                    MbsPoolInstrument.append(permID)
 
-                            elif objectType=="MbsTbaInstrument":
-                                MbsTbaInstrument.append(permID)
+                                elif objectType=="MbsTbaInstrument":
+                                    MbsTbaInstrument.append(permID)
 
-                        else:
-                            print(f"Unknown ObjectType {objectType} encountered. Please update code")                
+                            else:
+                                print(f"Unknown ObjectType {objectType} encountered. Please update code")                
         Li +=1
 TotalSymbologyTimeEnd=datetime.now()
 TotalSymbologyRunTime=(TotalSymbologyTimeEnd- TotalSymbologyTimeStart).total_seconds()
@@ -214,7 +220,7 @@ print(f"Symbology Lookups Complete - {Li} batches")
 #Batch Sizes for each query
 GCChunkSize=10      #GovCorp Batch Size
 AbsCmoChunkSize=10  #AbsCmo Batch Size
-MuniChunkSize=200   #Muni Batch Size
+MuniChunkSize=100   #Muni Batch Size
 EDChunkSize=10      #EDF Batch Size
 OAChunkSize=200     #OrgAuthority Batch Size
 SPChunkSize=200     #Structurted Product Batch Size
@@ -225,13 +231,14 @@ FSCChunkSize=200    #FundShareClass Batch Size
 # GraphQL Query Paths. The queries used depends on whether the DeltaFlag is set to Initialise, in which case the
 # standard grapghQL queries are defined. If the DeltaFlag is anything else, the Delta queries are used.
 if DeltaFlag=="Initialise":
-    GovCorpInstrumentQuery="./gql_Queries/gql_GovCorp_Full_Instrument_and_All_Quotes_Reference_Data.gql"
+    #GovCorpInstrumentQuery="./gql_Queries/gql_GovCorp_Full_Instrument_and_All_Quotes_Reference_Data.gql"
+    GovCorpInstrumentQuery="./gql_Queries/gql_GovCorp_Instrument_Summary_and_All_Quotes_Reference_Data.gql"
     GovCorpQuoteQuery="./gql_Queries/gql_End_Of_Day_Pricing.gql"
-    MuniInstrumentQuery="./gql_Queries/gql_Muni_Full_ReferenceData_No_Deal_TransferAgentID.gql"
+    MuniInstrumentQuery="./gql_Queries/gql_Muni_Full_ReferenceData.gql"
     EDInstrumentQuery="./gql_Queries/gql_Equity_Full_Reference_Data_All_Quotes_Query.gql"
     EDQuoteQuery="./gql_Queries/gql_End_Of_Day_Pricing.gql"
     OAQuery="./gql_Queries/gql_Organization_Full_Data_Query.gql"
-    SPInstrumentQuery="./gql_Queries/gql_StructuredProduct_Full_ReferenceData.gql"
+    SPInstrumentQuery="./gql_Queries/gql_StructuredProduct_QuoteData.gql"
     print("Initialisation Queries selected")
 else:
     GovCorpInstrumentQuery="./gql_Queries/gql_GovCorp_Full_Instrument_and_All_Quotes_Reference_Data_DELTA.gql"
@@ -283,6 +290,25 @@ if SPInstrument:
 if EDInstrument:
     queryObjectType="EDInstrument"
     graphQLLog=rdp_Common_Lib.SendGraphQLRequest(queryObjectType,DeltaFlag,DeltaDate,EDChunkSize,EDInstrumentQuery,EDInstrument,BatchIdentifier)
+
+    for items in graphQLLog:
+        objectType=items['objectType']
+        objectCount=items['objectCount']
+        chunkSize=items['chunkSize']
+        totalGraphQLRunTimeForObjectType=items['totalGraphQLRunTimeForObjectType']
+        graphQLBatches=items['batches']
+
+    GraphQLSummary.append({
+        "objectType": objectType,
+        "objectCount": objectCount,
+        "chunkSize": chunkSize,
+        "totalGraphQLRunTimeForObjectType":totalGraphQLRunTimeForObjectType,
+        "graphQLBatches": graphQLBatches
+    })
+
+if MuniInstrument:
+    queryObjectType="MuniInstrument"
+    graphQLLog=rdp_Common_Lib.SendGraphQLRequest(queryObjectType,DeltaFlag,DeltaDate,MuniChunkSize,MuniInstrumentQuery,MuniInstrument,BatchIdentifier)
 
     for items in graphQLLog:
         objectType=items['objectType']

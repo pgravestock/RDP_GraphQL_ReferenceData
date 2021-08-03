@@ -79,7 +79,10 @@ def graphQLRequest(graphQLQuery,queryType, Seq, IdentifierStamp):
 
 #=====================================================
 
-def SendGraphQLRequest(queryObjectType, DeltaFlag, DeltaDate, ChunkSize, GQLQuery, InstrumentList, IdentifierStamp):
+def SendGraphQLRequest(queryObjectType, QueryType, DeltaDate, ChunkSize, GQLQuery, InstrumentList, IdentifierStamp):
+    # v1.0.1 Changed Json object name that contains list of objectIDs in batch with errors to match the object name
+    # used in the graphql query to make it easier to paste list of objectIDs into a manual query.
+    # v1.0.2 Changed paramater name from DeltaFlag to QueryType to make its name more representative
     ChunkedInstrumentList=[]
     ChunkedInstrumentList=Chunk(InstrumentList,ChunkSize)
     print(f"There are {len(InstrumentList)} {queryObjectType}s split into {len(ChunkedInstrumentList)} batches")
@@ -96,14 +99,19 @@ def SendGraphQLRequest(queryObjectType, DeltaFlag, DeltaDate, ChunkSize, GQLQuer
         # Load the supplied query into this dictionary
         GraphQLQuery['query']=loadQuery(GQLQuery)
 
-        if DeltaFlag=="Delta":
+        if QueryType=="Delta":
             GraphQLQuery['variables']={
                 "ObjectList":ChunkedInstrumentList[Bi],
                 "DeltaDate":DeltaDate
             }
-        elif DeltaFlag=="Initialise":
+        elif QueryType=="Initialise":
             GraphQLQuery['variables']={
                 "ObjectList":ChunkedInstrumentList[Bi]
+            }
+        elif QueryType=="Pricing":
+            GraphQLQuery['variables']={
+                "ObjectList":ChunkedInstrumentList[Bi],
+                "PriceDate":DeltaDate
             }
         # Load the combined query into a json structure
         CompiledQuery=json.dumps(GraphQLQuery)
@@ -146,6 +154,20 @@ def SendGraphQLRequest(queryObjectType, DeltaFlag, DeltaDate, ChunkSize, GQLQuer
                 "fileSize": fileSize,
                 "objectCount":len(ChunkedInstrumentList[Bi])
             })
+        elif batchStatus=="API_Fail":
+            gqlBatchDetails.append({
+                "batch":Bi,
+                "batchStartTime": str(BatchStartTime),
+                "batchGraphQLRunTime": BatchRunTime,
+                "batchHttpStatus": httpStatus,
+                "batchStatus": batchStatus,
+                "batchErrorCode": batchErrorCode,
+                "batchErrorMessage": message,
+                "batchExtensions": "",
+                "fileSize": fileSize,
+                "objectCount": len(ChunkedInstrumentList[Bi]),
+                "ObjectList": ChunkedInstrumentList[Bi]
+            })
         else:
             gqlBatchDetails.append({
                 "batch":Bi,
@@ -158,7 +180,7 @@ def SendGraphQLRequest(queryObjectType, DeltaFlag, DeltaDate, ChunkSize, GQLQuer
                 "batchExtensions": extensions,
                 "fileSize": fileSize,
                 "objectCount": len(ChunkedInstrumentList[Bi]),
-                "objectIds": ChunkedInstrumentList[Bi]
+                "ObjectList": ChunkedInstrumentList[Bi]
             })
         
         batchStatus=None
