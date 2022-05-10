@@ -3,10 +3,16 @@ query InstrumentRefData($ObjectList: [String!]) {
     ObjectId
     Reference {
       InstrumentCommonNames {
-        InstrumentNameCommon
-        LanguageId
+        InstrumentCommonName
+        LanguageId_v2
+        # The following is an example of how the LanguageId_v2 field TheLanguageId_v2 field can have arguments added to it to return 
+        #nthe name of the language or its BCP-47 code rather than the default Language PermID
+        LanguageId_v2Name: LanguageId_v2(format: Name, style: LongName, language: en_US)
+        LanguageId_v2Bcp: LanguageId_v2(format: Bcp_47)
       }
-      AssetClassId
+      AssetClassId_v2
+      # The AssetClassId_v2 field can have arguments added to it to return the definitiion of the Asset Class PermId
+      AssetClassId_v2Descr: AssetClassId_v2(format: Name, style: LongName, language: en_US)
       Cfi
       InstrumentStatus
     }
