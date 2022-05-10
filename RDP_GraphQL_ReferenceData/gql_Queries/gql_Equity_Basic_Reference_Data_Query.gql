@@ -1,36 +1,43 @@
-#Equity Instrument, AllQuote query
-#This query takes Instrument PermIDs from the InstrumentList query variable and requests
-#basic Instrument Reference Data (name, asset type, status etc), and Instrument Identifiers.
-#For each Intrumernt, the querty then requests Quote level reference data and RICs for all quotes
-#associated with each Instrument.
+# Equity Instrument, AllQuote query
+# This query takes Instrument PermIDs from the ObjectList query variable and requests
+# basic Instrument Reference Data (name, asset type, status etc), and Instrument Identifiers.
+# For each Intrumernt, the querty then requests Quote level reference data and RICs for all
+# active quotes associated with the instrument.
+#
+# The query also demonstates how fields that contain enumerated values support additional arguments
+# that transform the underlying enumerated value in to a more consumable form to the end user.
 
 query InstrumentRefData($ObjectList: [String!]) {
   EDFInstrument(objectIds: $ObjectList) {
     ObjectId
     Reference {
       InstrumentCommonNames {
-        InstrumentNameCommon
-        LanguageId
+        InstrumentCommonName
+        LanguageId_v2(format:Name,style:LongName,language:en_US)
       }
-      AssetClassId
+      AssetClassId_v2
+      AssetClassDescr:AssetClassId_v2(format:Name,style:LongName,language:en_US)
       Cfi
       InstrumentStatus
     }
     InstrumentIdentifiers {
-      IdentifierTypeId
+      IdentifierTypeId_v2
+      IdentifierTypeId_v2Descr:IdentifierTypeId_v2(format:Name,style:LongName,language:en_US)
       IdentifierData {
         IdentifierValue
       }
     }
     IssuerOrganizationId
-    AllQuotes {
+    #This filter limits the records returned by the AllQuotes relationship to quotes that have their
+    # QuoteIsActiveFlag set to true
+    AllQuotes (filter:{Reference:{QuoteIsActive:{EQ:true}}}) {
       ObjectId
       Reference {
         QuoteIsActive
         RetireDate
         QuoteCommonNames {
           QuoteCommonName
-          LanguageId
+          LanguageId_v2(format:Name,style:LongName,language:en_US)
         }
         CountryPrimaryQuoteFlag
         LseOpol
@@ -39,15 +46,16 @@ query InstrumentRefData($ObjectList: [String!]) {
         PricingGroupCode
         PricingGroupName
         PrimaryQuoteFlag
-        QuoteCountryId
-        QuoteCurrencyId
+        QuoteCountryId_v2
+        QuoteCountryId_v2Iso:QuoteCountryId_v2(format:Iso_31661_2)
+        QuoteCurrencyId_v2
         RoundLotSize
-        QuoteRcsAssetClass
         SettlementPeriod
       }
       #The filter on IdentiferTypeId limits results to records with an IdentifierTypeId of 320110 - a RIC
-      QuoteIdentifiers(filter: {IdentifierTypeId: {EQ: 320110}}) {
-        IdentifierTypeId
+      QuoteIdentifiers(filter: {IdentifierTypeId_v2: {EQ: "320110"}}) {
+        IdentifierTypeId_v2
+        IdentifierTypeId_v2Descr:IdentifierTypeId_v2(format:Name,style:LongName,language:en_US)
         IdentifierData {
           IdentifierValue
           IdentifierEffectiveFrom
