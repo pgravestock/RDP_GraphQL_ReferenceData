@@ -3,7 +3,7 @@
 The purpose of this module is to:
 
 * accept a csv list of identifiers,
-* send the identifiers to the Symbology APU and retrieve the corresponding Instrument PermID and Object Type
+* send the identifiers to the Symbology API and retrieve the corresponding Instrument PermID and Object Type
 * sort the returned Instrumdent PermIDs into lists (one list per ObjectTyper)
 * select the appropriate reference data graphQL query for each objectType list and return the results as a json file.
 
